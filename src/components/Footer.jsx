@@ -1,8 +1,12 @@
 import React from 'react'
+import Logo from '../assets/D.png'
 
 const Footer = () =>{
     return(
-        <div>Footer</div>
+     <footer>
+        <img src={Logo} alt=''/>
+        <span>Made with love</span>
+             </footer>
     )
 }
 export default Footer;
