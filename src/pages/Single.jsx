@@ -17,19 +17,24 @@ const Single = () =>{
 <div className='info'>
     <span>Johnny</span>
     <p>Posted 2 days ago</p>
-</div>
-<div className='edit'></div>
+    </div>
+   
+<div className='edit'>
 <Link to ={'/write?edit=2'}>
-<span class="material-symbols-outlined">
+    <span class="material-symbols-outlined">
 delete
 edit_square
 </span>
 </Link>
 <Link>
 <span class="material-symbols-outlined">
+
 </span>
 </Link>
-            </div>
+</div>
+</div>
+
+           
             <h1>Title of the post</h1>
             <p>sThe House Ethics Committee issued a report Thursday finding “substantial evidence” that Rep. George Santos of New York violated campaign finance and government ethics laws. The committee unanimously voted to refer evidence it collected on the freshman Republican to the Department of Justice, but it did not take any action against Santos.
 
