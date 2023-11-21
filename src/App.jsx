@@ -1,12 +1,13 @@
 import { Children } from 'react'
 import { createBrowserRouter, RouterProvider, Outlet} from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Write from './pages/Write'
 import Home from './pages/Home'
 import Single from './pages/Single'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+
 import './style.scss'
 
 const Layout =()=>{
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Home/>
+      },
+      {
+        path: '/home',
+        element: <Home/>
       },
       {    path: '/post/:id',
       element: <Single/>
@@ -49,10 +54,7 @@ const router = createBrowserRouter([
     path: '/write',
     element: <Write/>
   },
-  {
-    path: '/home',
-    element: <Home/>
-  },
+
 
 ]);
 
@@ -70,3 +72,4 @@ function App() {
   }
 
 export default App
+

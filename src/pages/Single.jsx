@@ -1,49 +1,98 @@
-import React from 'react'
-import { FaGoogle } from 'react-icons/fa'
-import {Link} from 'react-router-dom'
-import Menu from '../components/Menu'
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import Menu from '../components/Menu';
 
+const Single = () => {
+  const [post, setPost] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
 
+  useEffect(() => {
+    fetch(`http://localhost:3005/posts/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPost(data);
+        setLoading(false);
+      })
+      .catch((error) => console.error('Error fetching post data:', error));
+  }, [id]);
 
+  // delete post
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`http://localhost:3005/posts/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.ok) {
+      } else {
+        console.error('Error deleting post: Post was not deleted');
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+    }
+  };
 
-const Single = () =>{
-    return(
-        <div className='single'>
-            <div className='content'>
-                <img src='https://media.istockphoto.com/id/1263601084/vector/soccer-ball-symbol-football-ball-icon.jpg?s=1024x1024&w=is&k=20&c=EMCtPvFATLZqUpaklJ2w6GbjCSrVxgWKFKa7DO1S9ck='></img>
-<div className='user'>
-<img src='https://media.istockphoto.com/id/1169241965/photo/mature-hispanic-man-wearing-plaid-shirt.jpg?s=2048x2048&w=is&k=20&c=TzR0Wid7ipwvhRGRBEt7DcqEaMXlYYR2eROeG7MZ1pw='></img>
+  // edit post
+  const handleEdit = async () => {
+    try {
 
-<div className='info'>
-    <span>Johnny</span>
-    <p>Posted 2 days ago</p>
-    </div>
-   
-<div className='edit'>
-<Link to ={'/write?edit=2'}>
-    <span class="material-symbols-outlined">
-delete
-edit_square
-</span>
-</Link>
-<Link>
-<span class="material-symbols-outlined">
+      const response = await fetch(`http://localhost:3005/posts/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: 'Updated Title',
+          description: 'Updated Description',
+          img: 'Updated img',
+        }),
+      });
+      if (response.ok) {
+      } else {
+        console.error('Error updating post: Post was not updated');
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+    }
+  };
 
-</span>
-</Link>
-</div>
-</div>
-
-           
-            <h1>Title of the post</h1>
-            <p>sThe House Ethics Committee issued a report Thursday finding “substantial evidence” that Rep. George Santos of New York violated campaign finance and government ethics laws. The committee unanimously voted to refer evidence it collected on the freshman Republican to the Department of Justice, but it did not take any action against Santos.
-
-“Santos’ conduct warrants public condemnation, is beneath the dignity of the office, and has brought severe discredit upon the House,” the committee stated.
-
-Santos, who is already facing a 23-count federal indictment for alleged crimes including money laundering and theft of public funds, subsequently announced that he is no longer seeking reelection in New York’s 3rd District. He remained defiant, however, calling the committee’s report a “disgusting politicized smear” and vowing to pursue his “conservative values in my remaining time in Congress.”</p>
+  return (
+    <div className='single'>
+      <div className='content'>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <img src={post.img} alt={post.title} />
+            <div className='user'>
+              <img
+                src='https://media.istockphoto.com/id/1169241965/photo/mature-hispanic-man-wearing-plaid-shirt.jpg?s=2048x2048&w=is&k=20&c=TzR0Wid7ipwvhRGRBEt7DcqEaMXlYYR2eROeG7MZ1pw='
+                alt='User'
+              />
+              <div className='info'>
+                <span>Johnny</span>
+                <p>Posted 2 days ago</p>
+                <div className='edit'>
+                  <Link to={`/write?edit=${id}`} className='material-symbols-outlined' onClick={handleEdit}>
+                    edit
+                  </Link>
+                  <span className='material-symbols-outlined' onClick={handleDelete}>
+                    delete
+                  </span>
+                </div>
+              </div>
             </div>
-            <Menu />
-        </div>
-    )
-}
+            <h1>{post.title}</h1>
+            <p>{post.description}</p>
+          </>
+        )}
+      </div>
+      <Menu />
+    </div>
+  );
+};
+
 export default Single;
