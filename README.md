@@ -1,8 +1,10 @@
-# React + Vite
+HEY THERE!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+this is my my first fullstack webapp that I made all on my own!
+With this blog app you can:
+- check out all the latestest news on a home page
+- create/update/delete posts
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*tech details*
+- I used react for the frontend and it's connected to my very own backend data base! (yay!)
+- just open an 

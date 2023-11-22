@@ -50,10 +50,6 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login/>
   },
-  {
-    path: '/write',
-    element: <Write/>
-  },
 
 
 ]);
@@ -72,4 +68,3 @@ function App() {
   }
 
 export default App
-
