@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const Write = () => {
   const [value, setValue] = useState('')
+  console.log(value)
   const [post, setPost] = useState({});
-  const { id } = useParams();
+const [params] = useSearchParams();
+const id= params.get(`post`)
+
 
   useEffect(() => {
     fetch(`http://localhost:3005/posts/${id}`)
@@ -20,16 +23,16 @@ const Write = () => {
  // publish post
  const handlePublish = async () => {
   try {
-    const response = await fetch(`http://localhost:3005/posts/${id}`, {
+    const response = await fetch("http://localhost:3005/posts/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title: '', 
-        description: '',
-        img: '', 
-  
+        title: 'title', 
+        description: 'desc',
+        img: 'txtx', 
+        registration_confirmed: true,
       }),
     });
 

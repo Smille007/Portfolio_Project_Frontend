@@ -53,7 +53,7 @@ const Single = () => {
                 <span>Johnny</span>
                 <p>Posted 2 days ago</p>
                 <div className='edit'>
-                  <Link to={`/write?edit=${id}`} className='material-symbols-outlined'>
+                  <Link to={`/write?post=${id}`} className='material-symbols-outlined'>
                     edit
                   </Link>
                   <span className='material-symbols-outlined' onClick={handleDelete}>
