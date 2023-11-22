@@ -25,7 +25,7 @@ const Home = () =>{
                 </div>
                 <div className='content'>
                 <h1>{post.title}</h1>
-                <p>{post.description}</p>
+                <p>{post.description.slice(0, 200)}</p>
                 <Link className='link' to={`post/${post.id}`}><button>Read more</button>
                 </Link>
                 </div>

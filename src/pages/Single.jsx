@@ -35,29 +35,6 @@ const Single = () => {
     }
   };
 
-  // edit post
-  const handleEdit = async () => {
-    try {
-
-      const response = await fetch(`http://localhost:3005/posts/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: 'Updated Title',
-          description: 'Updated Description',
-          img: 'Updated img',
-        }),
-      });
-      if (response.ok) {
-      } else {
-        console.error('Error updating post: Post was not updated');
-      }
-    } catch (error) {
-      console.error('Network error:', error);
-    }
-  };
 
   return (
     <div className='single'>
@@ -76,7 +53,7 @@ const Single = () => {
                 <span>Johnny</span>
                 <p>Posted 2 days ago</p>
                 <div className='edit'>
-                  <Link to={`/write?edit=${id}`} className='material-symbols-outlined' onClick={handleEdit}>
+                  <Link to={`/write?edit=${id}`} className='material-symbols-outlined'>
                     edit
                   </Link>
                   <span className='material-symbols-outlined' onClick={handleDelete}>
